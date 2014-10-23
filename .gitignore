@@ -1,8 +1,7 @@
 .idea
 .DS_Store
-target/
+target
 .project
-.settings/
+.settings
 .classpath
-bin/
-
+bin
