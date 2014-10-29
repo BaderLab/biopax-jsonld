@@ -28,31 +28,27 @@ import org.biopax.paxtools.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.FileManager;
 
-
+/* 
+ * test class with main method as an example how to run jsonld converter from java code
+ */
 public class JSONLDConverter {
 	public static void main (String args[]) throws IOException {
 		String jsonldTestFileName="test.jsonld";
 		String rdfTestFileName="test.rdf";
-		 OutputStream outLD=null;
-		 //OutputStream outRDF=null;
-		 //InputStream inputLD=null;
+		OutputStream outLD=null;
+
 	    String inputFileNameOriginal="PC2v5test-Signaling-By-BMP-Pathway-REACT_12034.2.owl";
-		//String inputFileNameOriginal=args[0];
-	    //String noExtFileName=inputFileNameOriginal.substring(inputFileNameOriginal.length()-3);
 
-	
-	   JSONLDInterface intf = new JSONLDImpl();	   
-
-   MyClass dummyClass=new MyClass();
-   /*		Model model = io.convertFromOWL(
-				dummyClass.getClass().getClassLoader()
-					.getResourceAsStream("PC2v5test-Signaling-By-BMP-Pathway-REACT_12034.2.owl"));*/
-   InputStream in=dummyClass.getClass().getClassLoader().getResourceAsStream("PC2v5test-Signaling-By-BMP-Pathway-REACT_12034.2.owl");
-	 
-   intf.convertToJSONLD(in, outLD);
-   
-   InputStream  inputLD = new FileInputStream(jsonldTestFileName);
-   OutputStream  outRDF=new FileOutputStream (rdfTestFileName);
+	   JSONLDInterface intf = new JSONLDImpl();	 
+	   
+	   //convert owl test file in resource directory to jsonld format 
+	   MyClass dummyClass=new MyClass(); 
+	   InputStream in=dummyClass.getClass().getClassLoader().getResourceAsStream("PC2v5test-Signaling-By-BMP-Pathway-REACT_12034.2.owl");
+	   intf.convertToJSONLD(in, outLD);
+	   
+	   //convert jsonld test file back to rdf format
+	   InputStream  inputLD = new FileInputStream(jsonldTestFileName);
+	   OutputStream  outRDF=new FileOutputStream (rdfTestFileName);
 	   intf.convertFromJSONLD(inputLD,outRDF);
 
 	}

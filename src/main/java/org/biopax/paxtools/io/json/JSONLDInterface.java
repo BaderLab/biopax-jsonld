@@ -8,8 +8,15 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public interface JSONLDInterface {
-
+	
+	/* 
+	 * Convert inputstream in owl/rdf format to outputsream in jsonld format
+	 */	
 	public void  convertToJSONLD(InputStream in, OutputStream os) throws IOException;
+	
+	/* 
+	 * Convert inputstream in jsonld format to outputsream in owl/rdf format
+	 */	
 	 public void convertFromJSONLD(InputStream in,OutputStream out);
 	
 }

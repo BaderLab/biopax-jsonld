@@ -22,6 +22,9 @@ import com.hp.hpl.jena.util.FileManager;
 
 public class JSONLDImpl implements JSONLDInterface  {
 	
+	/* 
+	 * Convert inputstream in owl/rdf format to outputsream in jsonld format
+	 */
 	public void  convertToJSONLD(InputStream in , OutputStream os) throws IOException{
 		 String outputFileName="test.jsonld";
 		 OutputStream fos=null;
@@ -31,7 +34,7 @@ public class JSONLDImpl implements JSONLDInterface  {
 		    // print current time
 		    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 		    	
-		    	System.out.println( "Conversion RDF to JSON started "+sdf.format(Calendar.getInstance().getTime()) );
+		    	System.out.println( "Conversion RDF to JSONLD started "+sdf.format(Calendar.getInstance().getTime()) );
 		    	
 		    // create an empty model
 		    	com.hp.hpl.jena.rdf.model.Model modelJena = ModelFactory.createDefaultModel();		    		    
@@ -53,8 +56,8 @@ public class JSONLDImpl implements JSONLDInterface  {
 		   System.out.println( "Read into Model finished "+sdf.format(Calendar.getInstance().getTime()) );
 	   
 		   RDFDataMgr.write(fos,modelJena, Lang.JSONLD) ;
-		   System.out.println( "Conversion RDF to JSON finished "+sdf.format(Calendar.getInstance().getTime()) );
-		   System.out.println(" JSON-LD file "+" is written successfully.");
+		   System.out.println( "Conversion RDF to JSONLD finished "+sdf.format(Calendar.getInstance().getTime()) );
+		   System.out.println(" JSONLD file "+" is written successfully.");
 		   //os.close();
 		
 		   
@@ -63,7 +66,9 @@ public class JSONLDImpl implements JSONLDInterface  {
 	}
 	
 
-		
+		/* 
+		 * Convert inputstream in jsonld format to outputsream if owl/rdf format
+		 */
 		
 		 public void convertFromJSONLD(InputStream in,OutputStream out){
 			    
@@ -111,8 +116,8 @@ public class JSONLDImpl implements JSONLDInterface  {
 
 		
 		File fullUriBiopaxInput = File.createTempFile("biopaxTemp", "owl"); 
-		//(the tmp directory can be also set to a non-default by using -Djava.io.tmpdir=... JVM option, e.g., for debugging)
-		//fullUriBiopaxInput.deleteOnExit(); //delete on JVM exits
+		
+		fullUriBiopaxInput.deleteOnExit(); //delete on JVM exits
 		FileOutputStream outputStream = new FileOutputStream(fullUriBiopaxInput);
 		
 		//write to an output stream (back to RDF/XML)
