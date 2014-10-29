@@ -19,3 +19,13 @@ Reverse conversion of file test.jsonld to rdf format file will produce file "tes
 
 How to run from java code:
 An example how to run conversion methods from java code is main method in JSONLDConverter.java file.
+In short:
+To convert owl/rdf file to jsonld format use method convertToJSONLD in interface JSONLDInterface:
+
+convertToJSONLD(InputStream in, OutputStream os).
+
+To convert jsonld file from jsonld to RDF format use method convertFromJSONLD in interface JSONLDInterface:
+
+convertFromJSONLD(InputStream in,OutputStream out)
+	  
+
